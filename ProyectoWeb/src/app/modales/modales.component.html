@@ -1,0 +1,67 @@
+<a href="#" class="btn btn-outline-info mr-2" id="Editar" data-toggle="modal" data-target="#Modal1">Editar</a>
+<a href="#" class="btn btn-outline-danger "(click)="ModalEliminar()">Eliminar</a>
+
+
+<div class="modal fade" style="display: none" id="Modal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">New message</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true"id="cerrarbtn">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="form-group">
+              <label for="recipient-name" class="col-form-label">Titulo:</label>
+              <input type="text" class="form-control" id="recipient-name">
+            </div>
+          <div class="form-group">
+            <label for="message-text" class="col-form-label">Descripción:</label>
+            <textarea class="form-control" id="message-text"></textarea>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary"data-dismiss="modal" (click)="ModalEditar()" id="Aceptar">Aceptar
+            </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" style="display: none" id="Modal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">New message</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true"id="cerrarbtn">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="form-group"id="ImagenDire">
+            <label for="recipient-name" class="col-form-label" >Imagen:</label>
+            <input type="text" class="form-control" id="recipient-name">
+          </div>
+          <div class="form-group">
+              <label for="recipient-name" class="col-form-label">Titulo:</label>
+              <input type="text" class="form-control" id="recipient-name">
+            </div>
+          <div class="form-group">
+            <label for="message-text" class="col-form-label">Descripción:</label>
+            <textarea class="form-control" id="message-text"></textarea>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" (click)="ModaAgregar()" id="Aceptar">Aceptar
+            </button>
+      </div>
+    </div>
+  </div>
+</div>
