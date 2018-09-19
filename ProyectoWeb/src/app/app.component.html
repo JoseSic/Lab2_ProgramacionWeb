@@ -1,2 +1,24 @@
 <!--The content below is only a placeholder and can be replaced.-->
-<app-pagina-inicio></app-pagina-inicio>
+<nav class="navbar sticky-top navbar-expand-sm navbar-dark bg-dark">
+    <a class="navbar-brand" href="#">
+        <img src="./assets/img/4.png" width="30" height="30" class="d-inline-block align-top" alt="">
+        InstaGT
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav ml-auto text-center" id="3">
+            <li class="nav-item active">
+                <a class="nav-link" id="B1"><button type="button" class="btn btn-outline-success"  routerLink="/VentanaNueva" >NUEVO +</button></a>
+            </li>
+
+            <li class="nav-item active">
+                <a class="nav-link" id="B1"><button type="button" class="btn btn-outline-success"  routerLink="/dashboard" >Home</button></a>
+            </li>
+        </ul>
+    </div>
+  </nav>
+
+<router-outlet></router-outlet>

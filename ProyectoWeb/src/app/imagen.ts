@@ -1,3 +1,5 @@
 export class Imagen {
-    name: string;
+    id: string;
+    titulo: string;
+    descripcion: string;
 }
