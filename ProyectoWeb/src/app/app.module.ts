@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
+import { FormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
 import { PaginaInicioComponent } from './pagina-inicio/pagina-inicio.component';
 import { ModalesComponent } from './modales/modales.component';
@@ -18,7 +18,8 @@ import { AppRoutingModule } from './app-routing.module';
   imports: [
     BrowserModule,
     ModalDialogModule.forRoot(),
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,5 +1,7 @@
-import { Component, ViewContainerRef } from '@angular/core';
+import { Component, ViewContainerRef,Input } from '@angular/core';
 import { ModalDialogService, SimpleModalComponent } from 'ngx-modal-dialog';
+import {Imagen} from '../imagen';
+import {DatosService} from '../datos.service'
 
 @Component({
   selector: 'app-modales',
@@ -7,10 +9,15 @@ import { ModalDialogService, SimpleModalComponent } from 'ngx-modal-dialog';
   styleUrls: ['./modales.component.css']
 })
 export class ModalesComponent {
+  @Input() Seleccionado: Imagen;
 
-  constructor(private modalDialogService: ModalDialogService, private viewContainer: ViewContainerRef) {}
+  constructor(private modalDialogService: ModalDialogService, private viewContainer: ViewContainerRef,
+    private DatosServicio:DatosService ) {
+ 
+  }
 
   ModalEliminar() {
+    console.log(this.Seleccionado);
     this.modalDialogService.openDialog(this.viewContainer, {
       title: 'Eliminar Elemento',
       childComponent: SimpleModalComponent,
@@ -25,9 +32,8 @@ export class ModalesComponent {
           text: 'ELIMINAR',
           buttonClass: 'btn btn-danger',
           onAction: () => new Promise((resolve: any) => {
-            setTimeout(() => {
-              resolve();
-            }, 20);
+            resolve();
+            this.DatosServicio.removeDatos(this.Seleccionado);
           })
         }
       ]

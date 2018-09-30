@@ -8,14 +8,48 @@
 </div>
 <div class="container">
   <div class="card-columns mt-5 pt-5" id="Galeria">
-          <div *ngFor= 'let imag of imagenes2' class="card">
-              <img class="card-img-top img-fluid" src="./assets/img/{{imag.id}}.jpeg" alt="">
+          <div *ngFor= 'let imag of Ids' class="card" >
+              <img class="card-img-top img-fluid" src="./assets/img/{{ArregloDatos[imag].imagen}}.jpeg" alt="">
               <div class="card-body">
-                <h5 class="card-title">{{imag.titulo}}</h5>
-                <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                <h5 class="card-title">{{ArregloDatos[imag].titulo}}</h5>
+                <p class="card-text">{{ArregloDatos[imag].descripcion}}</p>
                 <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-                <app-modales></app-modales>
+                <button class="btn btn-outline-info mr-2" id="Editar" data-toggle="modal" data-target="#Modal1"(click)="ElementoSeleccionado(ArregloDatos[imag])">Editar</button>
+                <button class="btn btn-outline-danger "(click)="ModalEliminar(ArregloDatos[imag])">Eliminar</button>
+                
               </div>
           </div>   
       </div>
   </div>
+
+  
+  <div class="modal fade" style="display: none" id="Modal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Edite los datos:</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true"id="cerrarbtn">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form>
+            <div class="form-group">
+                <label for="recipient-name" class="col-form-label">Titulo:</label>
+                <input type="text" class="form-control" name="Titulo"[(ngModel)]="Titulo">
+              </div>
+            <div class="form-group">
+              <label for="message-text" class="col-form-label">Descripción:</label>
+              <textarea class="form-control" name="Descripcion" [(ngModel)]="Descripcion"></textarea>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary"data-dismiss="modal" (click)="ModalEditar()" id="Aceptar">Aceptar
+              </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  
