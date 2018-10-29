@@ -1,5 +1,6 @@
 import { Component, OnInit,ViewContainerRef } from '@angular/core';
 import {DatosService} from '../datos.service'
+import {Datos2Service} from '../datos2.service'
 import { ModalDialogService, SimpleModalComponent } from 'ngx-modal-dialog';
 import {Imagen} from '../imagen';
 import { Guid } from "guid-typescript";
@@ -11,10 +12,13 @@ import { Guid } from "guid-typescript";
 })
 export class VentanaNuevoComponent implements OnInit {
   pathImage: string;
-  ImagenD: Imagen;
   Descripcion: string;
   titulo: string;
-  constructor(private modalDialogService: ModalDialogService, private viewContainer: ViewContainerRef,public DataService: DatosService) { }
+  autor: string;
+  lugar: string;
+  contacto: string;
+  constructor(private modalDialogService: ModalDialogService, private viewContainer: ViewContainerRef,public DataService: DatosService,
+    public DataService2: Datos2Service) { }
 
   ngOnInit() {
   }
@@ -25,10 +29,9 @@ export class VentanaNuevoComponent implements OnInit {
 
   ModaAgregar() {
     let unico: string;
-    unico = Guid.raw()
     let img = this.aleatorio(5,30);
-    this.ImagenD = {id:unico,imagen:img,descripcion:this.Descripcion, titulo:this.titulo}
-    console.log(this.ImagenD);
+    const ImagenD2 = {imagen:img,descripcion:this.Descripcion, titulo:this.titulo, autor:this.autor, lugar: this.lugar, 
+      contacto: this.contacto}
     this.modalDialogService.openDialog(this.viewContainer, {
       title: 'Agregar',
       childComponent: SimpleModalComponent,
@@ -44,10 +47,53 @@ export class VentanaNuevoComponent implements OnInit {
           buttonClass: 'btn btn-success',
           onAction: () => new Promise((resolve: any) => {
             resolve();
-            this.DataService.addDatos(this.ImagenD);
+            this.DataService2.addFoto(ImagenD2);
             this.Descripcion="";
             this.titulo="";
             this.pathImage="";
+            this.autor = "";
+            this.lugar="";
+            this.contacto ="";
+          })
+        }
+      ]
+    });
+  }
+
+  openPromptModal() {
+    this.modalDialogService.openDialog(this.viewContainer, {
+      title: 'Dialog with action buttons',
+      childComponent: SimpleModalComponent,
+      data: {
+        text: 'Not so simple modal dialog. Do you agree?\n(It will close on Yes, fail on No and do nothing on Site effect)'
+      },
+      settings: {
+        closeButtonClass: 'close theme-icon-close'
+      },
+      actionButtons: [
+        {
+          text: 'Yes, close me!',
+          buttonClass: 'btn btn-success',
+          onAction: () => new Promise((resolve: any) => {
+            setTimeout(() => {
+              resolve();
+            }, 20);
+          })
+        },
+        {
+          text: 'Side effect',
+          buttonClass: 'btn btn-info',
+          onAction: () => {
+            alert('As you can see, I will not close this dialog');
+          }
+        },
+        {
+          text: 'No, fail closing!',
+          buttonClass: 'btn btn-danger',
+          onAction: () => new Promise((resolve: any, reject: any) => {
+            setTimeout(() => {
+              reject();
+            }, 20);
           })
         }
       ]

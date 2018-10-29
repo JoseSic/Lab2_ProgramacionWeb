@@ -12,7 +12,7 @@ export class DatosService {
     this.ArregloDatos = {};
     ;
   }
-
+/*
   getDatos (): {} {
     if (localStorage.getItem("ArregloDatos")=== null){
       this.ArregloDatos[this.imagenPrueba[0].id] = this.imagenPrueba[0];
@@ -47,5 +47,5 @@ export class DatosService {
   UpdateeDatos(imagen:Imagen): void{
     this.ArregloDatos[imagen.id]= imagen;
     localStorage.setItem("ArregloDatos", JSON.stringify(this.ArregloDatos))
-  }
+  }*/
 }

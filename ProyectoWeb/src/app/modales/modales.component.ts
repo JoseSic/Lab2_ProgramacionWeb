@@ -33,7 +33,7 @@ export class ModalesComponent {
           buttonClass: 'btn btn-danger',
           onAction: () => new Promise((resolve: any) => {
             resolve();
-            this.DatosServicio.removeDatos(this.Seleccionado);
+            //this.DatosServicio.removeDatos(this.Seleccionado);
           })
         }
       ]

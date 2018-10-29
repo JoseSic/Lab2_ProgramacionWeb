@@ -1,53 +1,73 @@
 <div class="container pt-5">
-  <div class="jumbotron"style="background-image: url(./assets/img/21.jpeg);">
-    <h1  class="display-4 text-white" >Momentos Guate</h1> 
-    <p class=" text-white">Postea tus mejores fotos sobre lugares, cultura, tradicones y demá
+    <div class="jumbotron" style="background-image: url(./assets/img/21.jpeg);">
+      <h1 class="display-4 text-white">Momentos Guate</h1>
+      <p class=" text-white">Postea tus mejores fotos sobre lugares, cultura, tradicones y demá
         sobre Guatemala
-    </p> 
+      </p>
+    </div>
   </div>
-</div>
-<div class="container">
-  <div class="card-columns mt-5 pt-5" id="Galeria">
-          <div *ngFor= 'let imag of Ids' class="card" >
-              <img class="card-img-top img-fluid" src="./assets/img/{{ArregloDatos[imag].imagen}}.jpeg" alt="">
-              <div class="card-body">
-                <h5 class="card-title">{{ArregloDatos[imag].titulo}}</h5>
-                <p class="card-text">{{ArregloDatos[imag].descripcion}}</p>
-                <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-                <button class="btn btn-outline-info mr-2" id="Editar" data-toggle="modal" data-target="#Modal1"(click)="ElementoSeleccionado(ArregloDatos[imag])">Editar</button>
-                <button class="btn btn-outline-danger "(click)="ModalEliminar(ArregloDatos[imag])">Eliminar</button>
-                
-              </div>
-          </div>   
-      </div>
-  </div>
-
+  <div class="container">
+    <div class="card-columns mt-5 pt-5" id="Galeria">
+      <div *ngFor='let imag of Ids' class="card">
+        <img class="card-img-top img-fluid" src="./assets/img/{{ArregloDatos[imag].imagen}}.jpeg" alt="">
+        <div class="card-body">
+          <h5 class="card-title">{{ArregloDatos[imag].titulo}}</h5>
+          <p class="card-text">{{ArregloDatos[imag].descripcion}}</p>
+          <p class="card-text"><b>Autor: </b>{{ArregloDatos[imag].autor}}</p>
+          <p class="card-text"><b>Lugar: </b>{{ArregloDatos[imag].lugar}}</p>
+          <p class="card-text" style="color:blue;">{{ArregloDatos[imag].contacto}}</p>
+          <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+          <button class="btn btn-outline-info mr-2" id="Editar" data-toggle="modal" data-target="#Modal1" (click)="ElementoSeleccionado(ArregloDatos[imag])">Editar</button>
+          <button class="btn btn-outline-danger " (click)="ModalEliminar(ArregloDatos[imag])">Eliminar</button>
   
-  <div class="modal fade" style="display: none" id="Modal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  
+  <div class="modal fade" style="display: none" id="Modal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title" id="exampleModalLabel">Edite los datos:</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true"id="cerrarbtn">&times;</span>
+            <span aria-hidden="true" id="cerrarbtn">&times;</span>
           </button>
         </div>
         <div class="modal-body">
           <form>
-            <div class="form-group">
-                <label for="recipient-name" class="col-form-label">Titulo:</label>
-                <input type="text" class="form-control" name="Titulo"[(ngModel)]="Titulo">
+            <div class="form-row">
+              <div class="form-group  col-md-6">
+                <label for="recipient-name" class="col-form-label"><b>Titulo:</b></label>
+                <input type="text" class="form-control" name="Titulo" [(ngModel)]="Titulo">
               </div>
+              <div class="form-group  col-md-6">
+                <label for="recipient-name" class="col-form-label"><b>Autor:</b></label>
+                <input type="text" class="form-control" name="Autor" [(ngModel)]="autor" >
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group  col-md-6">
+                <label for="recipient-name" class="col-form-label"><b>Lugar:</b></label>
+                <input type="text" class="form-control" name="lugar" [(ngModel)]="lugar">
+              </div>
+              <div class="form-group  col-md-6">
+                <label for="recipient-name" class="col-form-label"><b>Contacto:</b></label>
+                <input type="text" class="form-control" name="Contacto" [(ngModel)]="contacto" >
+              </div>
+            </div>
             <div class="form-group">
-              <label for="message-text" class="col-form-label">Descripción:</label>
+              <label for="message-text" class="col-form-label"><b>Descripción:</b></label>
               <textarea class="form-control" name="Descripcion" [(ngModel)]="Descripcion"></textarea>
             </div>
           </form>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary"data-dismiss="modal" (click)="ModalEditar()" id="Aceptar">Aceptar
-              </button>
+          <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="ModalEditar()" id="Aceptar">Aceptar
+          </button>
         </div>
       </div>
     </div>
