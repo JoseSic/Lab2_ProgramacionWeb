@@ -17,7 +17,7 @@ export class Datos2Service {
       timeout: 1000,
       headers: {
         'Access-Control-Allow-Origin': '*',
-        'Content-Type': 'application/json'
+        'content-type': 'application/json'
       },
     })
   }
