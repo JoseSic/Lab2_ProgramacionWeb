@@ -61,7 +61,7 @@ export class PaginaInicioComponent implements OnInit {
       actionButtons: [
         {
           text: 'Cancelar',
-          buttonClass: 'btn btn-outline-secondary',
+          buttonClass: 'btn btn-secondary',
           onAction: () => new Promise((resolve: any) => {
             setTimeout(() => {
               resolve();

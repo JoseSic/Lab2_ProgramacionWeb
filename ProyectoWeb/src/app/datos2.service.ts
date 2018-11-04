@@ -14,7 +14,7 @@ export class Datos2Service {
   constructor() {
     this.axiosClient = axios.create({
       baseURL: "http://localhost:3000/api/v1/Galeria",
-      timeout: 1000,
+      timeout: 5000,
       headers: {
         'Access-Control-Allow-Origin': '*',
         'content-type': 'application/json'
@@ -77,5 +77,22 @@ export class Datos2Service {
       });
     });
     return promise;
+  }
+
+    linkImage(data) {
+      let body = new FormData();
+      body.append('image', data);
+      let dd;
+      const promise = new Promise((resolve, reject) => {
+
+        this.axiosClient.post('/Upload', body )
+        .then(function (response) {
+          resolve(response.data['imageURL']);
+        })
+        .catch(function (error) {
+          reject(error);
+        });
+      });
+      return promise;
   }
 }

@@ -4,20 +4,23 @@
       <label for="recipient-name" class="col-form-label">
         <h4>Path:</h4>
       </label>
-      <input type="text" class="form-control p-3" name="pathImage" [(ngModel)]="pathImage"placeholder="Imagen">
+      <div class="custom-file">
+        <input type="file" (change)="onFileChanged($event)">
+      </div>
+      <input type="text" class="form-control p-3" name="pathImage" [(ngModel)]="pathImage" placeholder="Imagen">
     </div>
     <div class="form-row">
       <div class="form-group col-md-6">
         <label for="recipient-name" class=" label-primary col-form-label">
           <h4>Titulo:</h4>
         </label>
-        <input type="text" class="form-control p-3" name="titulo" [(ngModel)]="titulo"placeholder="Titulo">
+        <input type="text" class="form-control p-3" name="titulo" [(ngModel)]="titulo" placeholder="Titulo">
       </div>
       <div class="form-group col-md-6">
         <label for="recipient-name" class=" label-primary col-form-label">
           <h4>Autor:</h4>
         </label>
-        <input type="text" class="form-control p-3" name="autor" [(ngModel)]="autor"placeholder="Autor">
+        <input type="text" class="form-control p-3" name="autor" [(ngModel)]="autor" placeholder="Autor">
       </div>
     </div>
     <div class="form-row">
@@ -25,13 +28,13 @@
         <label for="recipient-name" class=" label-primary col-form-label">
           <h4>Lugar:</h4>
         </label>
-        <input type="text" class="form-control p-3" name="lugar" [(ngModel)]="lugar"placeholder="Lugar">
+        <input type="text" class="form-control p-3" name="lugar" [(ngModel)]="lugar" placeholder="Lugar">
       </div>
       <div class="form-group col-md-6">
         <label for="recipient-name" class=" label-primary col-form-label">
           <h4>Contacto:</h4>
         </label>
-        <input type="text" class="form-control p-3" name="contacto" [(ngModel)]="contacto"placeholder="Contacto">
+        <input type="text" class="form-control p-3" name="contacto" [(ngModel)]="contacto" placeholder="Contacto">
       </div>
     </div>
     <div class="form-row">
@@ -39,7 +42,7 @@
         <label for="message-text" class="label-primary col-form-label">
           <h4>Descripción:</h4>
         </label>
-        <textarea class="form-control p-3" name="Descripcion" rows="" [(ngModel)]="Descripcion"placeholder="Ingrese una descripción"></textarea>
+        <textarea class="form-control p-3" name="Descripcion" rows="" [(ngModel)]="Descripcion" placeholder="Ingrese una descripción"></textarea>
       </div>
     </div>
   </form>

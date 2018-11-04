@@ -9,7 +9,7 @@
   <div class="container">
     <div class="card-columns mt-5 pt-5" id="Galeria">
       <div *ngFor='let imag of Ids' class="card">
-        <img class="card-img-top img-fluid" src="./assets/img/{{ArregloDatos[imag].imagen}}.jpeg" alt="">
+        <img class="card-img-top img-fluid" src="{{ArregloDatos[imag].imagen}}" alt="">
         <div class="card-body">
           <h5 class="card-title">{{ArregloDatos[imag].titulo}}</h5>
           <p class="card-text">{{ArregloDatos[imag].descripcion}}</p>

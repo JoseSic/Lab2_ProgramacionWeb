@@ -17,6 +17,7 @@ export class VentanaNuevoComponent implements OnInit {
   autor: string;
   lugar: string;
   contacto: string;
+  selectedFile = null;
   constructor(private modalDialogService: ModalDialogService, private viewContainer: ViewContainerRef,public DataService: DatosService,
     public DataService2: Datos2Service) { }
 
@@ -27,10 +28,37 @@ export class VentanaNuevoComponent implements OnInit {
    return String(resAleatorio);
   }
 
+  onFileChanged(event){
+    this.selectedFile = event.target.files[0];
+    console.log(event);
+    this.pathImage = event.target.files[0].name;
+
+    this.DataService2.linkImage(this.selectedFile).then( result => {
+      this.pathImage = String(result);
+      console.log(result);
+    }).catch((err) => {
+      console.log(err);
+    });
+  }
+  onUploadOutput(event){
+    console.log(event);
+  }
+  onUpload(){
+    /*
+    let ArregloDatos = {};
+    
+    this.DataService2.linkImage(this.selectedFile).then( result => {
+      console.log(result);
+    }).catch((err) => {
+      console.log(err);
+    });
+    */
+  }
   ModaAgregar() {
+    console.log(this.pathImage);
     let unico: string;
     let img = this.aleatorio(5,30);
-    const ImagenD2 = {imagen:img,descripcion:this.Descripcion, titulo:this.titulo, autor:this.autor, lugar: this.lugar, 
+    const ImagenD2 = {imagen:this.pathImage,descripcion:this.Descripcion, titulo:this.titulo, autor:this.autor, lugar: this.lugar, 
       contacto: this.contacto}
     this.modalDialogService.openDialog(this.viewContainer, {
       title: 'Agregar',
