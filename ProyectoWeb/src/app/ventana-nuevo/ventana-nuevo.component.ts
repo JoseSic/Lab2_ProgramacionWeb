@@ -1,9 +1,10 @@
-import { Component, OnInit,ViewContainerRef } from '@angular/core';
-import {DatosService} from '../datos.service'
-import {Datos2Service} from '../datos2.service'
+import { Component, OnInit, ViewContainerRef } from '@angular/core';
+import { DatosService } from '../datos.service'
+import { Datos2Service } from '../datos2.service'
 import { ModalDialogService, SimpleModalComponent } from 'ngx-modal-dialog';
-import {Imagen} from '../imagen';
+import { Imagen } from '../imagen';
 import { Guid } from "guid-typescript";
+import { ToastServiceService } from '../toast-service.service'
 
 @Component({
   selector: 'app-ventana-nuevo',
@@ -18,32 +19,27 @@ export class VentanaNuevoComponent implements OnInit {
   lugar: string;
   contacto: string;
   selectedFile = null;
-  constructor(private modalDialogService: ModalDialogService, private viewContainer: ViewContainerRef,public DataService: DatosService,
-    public DataService2: Datos2Service) { }
+  constructor(private modalDialogService: ModalDialogService, private viewContainer: ViewContainerRef, public DataService: DatosService,
+    public DataService2: Datos2Service, private TService: ToastServiceService) { }
 
   ngOnInit() {
   }
-  aleatorio(inferior,superior){ 
+  aleatorio(inferior, superior) {
     var resAleatorio = Math.floor((Math.random() * (superior - inferior + 1)) + inferior);
-   return String(resAleatorio);
+    return String(resAleatorio);
   }
 
-  onFileChanged(event){
+  onFileChanged(event) {
     this.selectedFile = event.target.files[0];
     console.log(event);
     this.pathImage = event.target.files[0].name;
 
-    this.DataService2.linkImage(this.selectedFile).then( result => {
-      this.pathImage = String(result);
-      console.log(result);
-    }).catch((err) => {
-      console.log(err);
-    });
+
   }
-  onUploadOutput(event){
+  onUploadOutput(event) {
     console.log(event);
   }
-  onUpload(){
+  onUpload() {
     /*
     let ArregloDatos = {};
     
@@ -55,36 +51,27 @@ export class VentanaNuevoComponent implements OnInit {
     */
   }
   ModaAgregar() {
-    console.log(this.pathImage);
-    let unico: string;
-    let img = this.aleatorio(5,30);
-    const ImagenD2 = {imagen:this.pathImage,descripcion:this.Descripcion, titulo:this.titulo, autor:this.autor, lugar: this.lugar, 
-      contacto: this.contacto}
-    this.modalDialogService.openDialog(this.viewContainer, {
-      title: 'Agregar',
-      childComponent: SimpleModalComponent,
-      settings: {
-        closeButtonClass: 'close theme-icon-close'
-      },
-      data: {
-        text: 'Agregado con Exito!'
-      },
-      actionButtons: [
-        {
-          text: 'Aceptar',
-          buttonClass: 'btn btn-success',
-          onAction: () => new Promise((resolve: any) => {
-            resolve();
-            this.DataService2.addFoto(ImagenD2);
-            this.Descripcion="";
-            this.titulo="";
-            this.pathImage="";
-            this.autor = "";
-            this.lugar="";
-            this.contacto ="";
-          })
-        }
-      ]
+    this.DataService2.linkImage(this.selectedFile).then(result => {
+      var temp = String(result);
+      const ImagenD2 = {
+        imagen: temp, descripcion: this.Descripcion, titulo: this.titulo, autor: this.autor, lugar: this.lugar,
+        contacto: this.contacto
+      }
+      this.Descripcion = "";
+      this.titulo = "";
+      this.pathImage = "";
+      this.autor = "";
+      this.lugar = "";
+      this.contacto = "";
+      
+      this.DataService2.addFoto(ImagenD2).then(result => {
+        this.TService.Success(String(result));
+      }).catch((err) => {
+        this.TService.Error(String(err));
+      })
+
+    }).catch((err) => {
+      this.TService.Error(String(err));
     });
   }
 

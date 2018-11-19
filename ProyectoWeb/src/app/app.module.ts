@@ -7,6 +7,7 @@ import { ModalesComponent } from './modales/modales.component';
 import { ModalDialogModule } from 'ngx-modal-dialog';
 import { VentanaNuevoComponent } from './ventana-nuevo/ventana-nuevo.component';
 import { AppRoutingModule } from './app-routing.module';
+import { ToastServiceService } from './toast-service.service'
 
 @NgModule({
   declarations: [
@@ -21,7 +22,7 @@ import { AppRoutingModule } from './app-routing.module';
     AppRoutingModule,
     FormsModule
   ],
-  providers: [],
+  providers: [ToastServiceService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
